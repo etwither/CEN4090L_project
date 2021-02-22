@@ -53,6 +53,40 @@ while run:
         if event.type == pygame.QUIT:
             run = False
             break
+            
+    #gets the key pressed for movment
+    keys = pygame.key.get_pressed()
+    
+    #move left
+    if keys[pygame.K_LEFT] and player1.x-20 > player1.vel:
+        if keys[pygame.K_DOWN] and player1.y < winH - player1.height - player1.vel:
+            player1.y += player1.vel
+            player1.x -= player1.vel
+        elif keys[pygame.K_UP] and player1.y > 600:
+            player1.y -= player1.vel
+            player1.x -= player1.vel
+        else:
+            player1.x -= player1.vel
+    
+    #move right    
+    elif keys[pygame.K_RIGHT] and player1.x < winW - player1.width - player1.vel - 20:
+        if keys[pygame.K_DOWN] and player1.y < winH - player1.height - player1.vel:
+            player1.y += player1.vel
+            player1.x += player1.vel
+        elif keys[pygame.K_UP] and player1.y > 600:
+            player1.y -= player1.vel
+            player1.x += player1.vel
+        else:
+            player1.x += player1.vel
+    
+    #move down    
+    elif keys[pygame.K_DOWN] and player1.y < winH - player1.height - player1.vel:
+        player1.y += player1.vel
+    
+    #move up
+    elif keys[pygame.K_UP] and player1.y > 600:
+        player1.y -= player1.vel
+    
     redraw()
     
 #quit game
