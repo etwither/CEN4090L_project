@@ -17,23 +17,23 @@ OR y'all can just tell me what you want added/changed and I can do it myself w.e
 Instructions and shit for the website: https://sequencediagram.org/instructions.html
 LMK if you can't edit
 
-SD for "Select game to play" - 
-[ ] Version 1 -https://rb.gy/5bspnf
+SD for "Select game to play":
+- [ ] Version 1 -https://rb.gy/5bspnf
 
 
-SD for "Launch Subprocess" - 
-[ ] Version 1 - https://rb.gy/zg4v1u 
+SD for "Launch Subprocess": 
+- [ ] Version 1 - https://rb.gy/zg4v1u 
 
 
-SD for "Leave rating and Review" - 
-[ ] Version 1 - https://rb.gy/rvr4bs
+SD for "Leave rating and Review":
+- [ ] Version 1 - https://rb.gy/rvr4bs
 
 
-SD for "Remove/Add game (Admin)" - 
-[ ] Version 1 - https://rb.gy/jv8md7
+SD for "Remove/Add game (Admin)":
+- [ ] Version 1 - https://rb.gy/jv8md7
 
 
-SD for "Delete Review (Admin)" - 
-[ ] Version 1 -https://rb.gy/apmuuj
+SD for "Delete Review (Admin)":
+- [ ] Version 1 -https://rb.gy/apmuuj
 
 
