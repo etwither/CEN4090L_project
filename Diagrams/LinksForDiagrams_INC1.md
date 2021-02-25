@@ -13,7 +13,7 @@ sequence diagrams for all of our use cases. Again, I tried my best here so obvio
 Heres a google doc with all the TEXT versions of the diagrams:
 https://docs.google.com/document/d/1PdfA77boz1yDZAtWzKKjSGAglM9W0E5GFB8q1o5p7A8/edit?usp=sharing
 
-You can copy the corresponding texts for the diagrams (only 1 at a time) and paste it into https://sequencediagram.org/ to see what the diagram looks like. Make changes in the editor on the diagram website. Any changes you make, update the google doc with the text so we can see real time updates (since website is kinda funky and doesn't do that).
+You can copy the corresponding texts for the diagrams (only 1 at a time) and paste it into https://sequencediagram.org/ (you can delete the text thats autopopulated there) to see what the diagram looks like. Make changes in the editor on the diagram website. Any changes you make, update the google doc with the text so we can see real time updates (since website is kinda funky and doesn't do that).
 
 
 OR y'all can just tell me what you want added/changed and I can do it myself w.e works - KJ
