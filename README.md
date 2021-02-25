@@ -8,3 +8,5 @@ Progress Report: https://docs.google.com/document/d/1kMR0A16so3bxp84Xy9toxnIytT5
 
 IT doc: https://docs.google.com/document/d/1sGmI74Um5HoHVC_eISzNIS11pDuWS2_CfIoPyc1xa80/edit?usp=sharing
 
+Diagrams n shit: https://github.com/etwither/CEN4090L_project/blob/main/Diagrams/LinksForDiagrams_INC1.md
+
