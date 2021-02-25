@@ -1,0 +1,27 @@
+# Use case diagram link:
+
+Edit what you think should be in there. I tried my best. - KJ
+
+https://lucid.app/lucidchart/invitations/accept/f1b81938-9308-41f1-8d62-f8822e97d052
+
+# Sequence Diagrams (SD)
+
+Chris said that our main paradigm would be the website and I don't **think** the website is going to use any classes, so we have to make
+sequence diagrams for all of our use cases. Again, I tried my best here so obviously edit what you think should be changed/added whatever. Websites pretty easy to use but lmk if you need clarification for how it works. - KJ
+
+Instructions and shit for the website: https://sequencediagram.org/instructions.html
+Also the links are long af but i dont think I can change that so yeah.
+
+SD for "Select game to play" - https://sequencediagram.org/index.html#initialData=C4S2BsFMAIFUGcYGECGiBc0DKkoGNh5oVoBxFAW0gChaUCB7AJ2gEFGnr3hmBaAPgDqkAEbQAQkwYB3RE0xIGAOyWQCRHtGmj4YGsLGSZcgQBkGeFOGyQmAN1vpq5y9Zz3bAgCIh4AB3AUAE8ySkh4J24+fhx8YGJQqicgA
+
+SD for "Launch Subprocess" -
+https://sequencediagram.org/index.html#initialData=C4S2BsFMAIFUGcYGECGiBc0AyKCuA7AYwAtoBlXAIwAcAnAe0MnngChWVDh7boBBLj1YDutALQA+AOqRK0AEIMA7olqYk9fPkhd40btCWz4YSKxlzF9FZHESsjFOHK2AbrcztWDwk5e13OxwCEnIqOkZmeHV6AFtYghBfYBglMFJVQP16aHA8IlIAcxRYsxEeSWCCsJoGJhZMBFtoRChdaGLS73zQilrIlklytWgAcRKYcHoUABM9ADMeaFxVFpzgYkgAT2hffGhqPK3WIA
+
+SD for "Leave rating and Review" -
+https://sequencediagram.org/index.html#initialData=C4S2BsFMAIFUGcYGECGiBc0AykUDcQA7Ac2hWgCcVhIB6CyAyAdwChWUBjYAewugCC3PqyG8KAWgB8AdUgAjaACEKPZogqYkPQoUjd40XtGYL4YSKzmKVajdKw9OKcNADKkCnk+YASpABHAFdIeGBWR2dXDy9PaWtlVXUfaH94AAcdRCsFRLs4qTE+TAAJABUAWSxoAAUUYktRYUkpLBQgwk4AC0pGEBZDdPrITARPaEQoA2hiFABbGGMGJjY2ju7elcHhhycXd09vTWhgzwBPfy2ACgBKCL3ow4KE22TjgBMQDPAUC76B25NcTSNxBeRzMCpf7MUYaIxndKhaBETb9Nig8GQy5o3ZRA6xTT3PExI4ggCK1QAIkpRul3tQkdSTGAenpmKiWOwgA
+
+SD for "Remove/Add game (Admin)" -
+https://sequencediagram.org/index.html#initialData=C4S2BsFMAIFUGcYGECGiBc0CCATAtiAHbQBKkeA9gG6QD0uO0A4inpAFDsoDGwFATtnxF2ABxT9Q3EOMLBoAGQoBzItADK3fpEiExEqTJRzoANRTgQOFMBhLVe8ZJDTZ89ZGChCy+NAAKKMocnLgExAC0AHxRiipqmtq6mEiW3ADW0BTE4PHEAEYArl7Z7PYJWjqE0eaW1rZxDpi1VjaQYUQAFIWI-AA00OLw8ACU7PUo+WgwACI2k9PsLfV2edHQc8ALGNA9kPzoAGYUhYQ4A0PwRydnSxatDeXV0U8alcmNavCF3NyQw4dCuB2B1qlEPF4iL4AkFIJhtDgQNpeH4+NBEJCfPAQcIwRDvNDAsFMNw0uk-NwBNp4KJsoifNAiiVCKiKNBtJQaLQUDhGChoMpWBx8VC-ETINFQZhcsoTsBOmMgA
+
+SD for "Delete Review (Admin)" -
+https://sequencediagram.org/index.html#initialData=C4S2BsFMAIBUAsQGdrOgQ2qCkBQvspoBVJGAYXTIC5oBBAEwFsQA7aAJUiYHsA3GB3ShWAcwD0XPiEgB3fOgDGwHgCd6zNrgAO6VaEUhdrYNAAyPUW2gBlRasiRWOvQaPoT0AGrpwIBsIwFlbOuvoghsamNpDAIqIoAAroonj4jCzsALQAfDnmltZ2Dk605H6KANbQPOzghewARgCucbW4wUX2jqy5Pn4BwEENtP3+gRlsABTNZKoANNC6SEgAlLiD6I1UMAAiwls7uGODwyG50PvAhzTQs5Cq1ABmPM2sDIvLSM+v78e+4yGBXOuU67GKPVoYOgSGaikUkBWT2a4Fwk16ORicTYCWgyVStAcDBADmUKBUMNi8RQulSuCuN0gWVyWOpeJSkFoxKQ2nA6AAnlIZLIkFN1uiWVScUkObRdpAoEMhXIxbhWdL2alcgztrdiNpTrsAEJioA
