@@ -12,6 +12,8 @@ sequence diagrams for all of our use cases. Again, I tried my best here so obvio
 
 Note: I think websites kinda old school so it doesn't do real time updates. So if you all DO make changes to any files, please export -> create link to share -> copy raw link (and find somewhere to shorten it if you want) -> update this file with the new link with version I guess
 
+OR y'all can just tell me what you want added/changed and I can do it myself w.e works - KJ
+
 Instructions and shit for the website: https://sequencediagram.org/instructions.html
 LMK if you can't edit
 
