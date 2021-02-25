@@ -1,6 +1,6 @@
 
 # Use Case diagram link
-Edit what you think should be in there. I tried my best. - KJ
+Edit what you think should be in there, or just tell me what you think should be added and i'll do it - KJ
 
 https://lucid.app/lucidchart/invitations/accept/f1b81938-9308-41f1-8d62-f8822e97d052
 
