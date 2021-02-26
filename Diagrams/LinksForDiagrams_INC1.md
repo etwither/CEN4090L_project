@@ -1,5 +1,5 @@
 
-# Use Case diagram link
+# Use Case diagram
 
 
 <img src='https://github.com/etwither/CEN4090L_project/blob/main/Diagrams/UCD_Website.png' />
