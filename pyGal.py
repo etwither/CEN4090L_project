@@ -50,11 +50,31 @@ class laser(object):
     def draw(self,win):
         pygame.draw.rect(win, (255, 0, 0), (self.x,self.y,self.width,self.height))
 
+class enemy(object):
+    def __init__(self,x,y,width,height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.vel = 15
+        
+    def draw(self,win):
+        #draws out the enemy
+        pygame.draw.rect(win, (0, 255, 0), (self.x,self.y,self.width,self.height))
+        pygame.draw.rect(win, (255, 0, 0), (self.x-25,self.y-5,self.width+50,5))
+        pygame.draw.rect(win, (150, 0, 0), (self.x-25,self.y-15,self.width-20,30))
+        pygame.draw.rect(win, (150, 0, 0), (self.x+45,self.y-15,self.width-20,30))
+        pygame.draw.rect(win, (0, 255, 0), (self.x+5,self.y-10,self.width-10,5))
+        pygame.draw.rect(win, (0, 150, 0), (self.x-(self.width-22.5),self.y+(self.height-10),(self.width-15)*3,5))
+        pygame.draw.rect(win, (150, 0, 0), (self.x-22.5,self.y+30,self.width-25,25))
+        pygame.draw.rect(win, (150, 0, 0), (self.x+(self.width+12.5),self.y+30,self.width-25,25))
+        self.hitbox = (self.x-24, self.y-14, 83, 68)
     
 #updates the player and the enemies        
 def redraw():
     win.fill((0,0,0))
     player1.draw(win)
+    enemy1.draw(win)
     for x in pLaser:
         x.draw(win)
     pygame.display.update()
@@ -71,6 +91,7 @@ shoot = 0
 
 #player/enemies
 player1 = player(250,600,35,35)
+enemy1 = enemy(250,250,35,35)
 
 
 
