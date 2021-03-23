@@ -60,15 +60,18 @@ class enemy(object):
         
     def draw(self,win):
         #draws out the enemy
-        pygame.draw.rect(win, (0, 255, 0), (self.x,self.y,self.width,self.height))
-        pygame.draw.rect(win, (255, 0, 0), (self.x-25,self.y-5,self.width+50,5))
-        pygame.draw.rect(win, (150, 0, 0), (self.x-25,self.y-15,self.width-20,30))
-        pygame.draw.rect(win, (150, 0, 0), (self.x+45,self.y-15,self.width-20,30))
-        pygame.draw.rect(win, (0, 255, 0), (self.x+5,self.y-10,self.width-10,5))
-        pygame.draw.rect(win, (0, 150, 0), (self.x-(self.width-22.5),self.y+(self.height-10),(self.width-15)*3,5))
-        pygame.draw.rect(win, (150, 0, 0), (self.x-22.5,self.y+30,self.width-25,25))
-        pygame.draw.rect(win, (150, 0, 0), (self.x+(self.width+12.5),self.y+30,self.width-25,25))
-        self.hitbox = (self.x-24, self.y-14, 83, 68)
+        pygame.draw.rect(win, (0, 255, 0), (self.x,self.y,self.width,self.height))      #main body
+        pygame.draw.rect(win, (0, 255, 0), (self.x+5,self.y-10,self.width-10,5))        #short bar above long bar
+        pygame.draw.rect(win, (150, 0, 0), (self.x-25,self.y-5,self.width+50,5))        #long bar above body
+        pygame.draw.rect(win, (150, 0, 0), (self.x-25,self.y-15,self.width-20,30))      #cannon attached to long bar
+        pygame.draw.rect(win, (150, 0, 0), (self.x+45,self.y-15,self.width-20,30))      #cannon attached to long bar
+        pygame.draw.rect(win, (0, 150, 0), (self.x-(self.width-22.5),self.y+(self.height-10),(self.width-15)*3,5))      #long bar in front
+        pygame.draw.rect(win, (150, 0, 0), (self.x-22.5,self.y+30,self.width-25,25))    ##cannon attached to long bar
+        pygame.draw.rect(win, (150, 0, 0), (self.x+(self.width+12.5),self.y+30,self.width-25,25))    #cannon attached to long bar
+        
+        #hitbox
+        self.hitbox = (self.x-27, self.y-17, 86, 72)
+        pygame.draw.rect(win, (255,0,0), self.hitbox,2)
     
 #updates the player and the enemies        
 def redraw():
