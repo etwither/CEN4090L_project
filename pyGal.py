@@ -20,8 +20,12 @@ class player(object):
         #speed
         self.vel = 10
         
+        #hitbox
+        self.hitbox = (self.x-24, self.y-18, 83, 55)
+        
     #creates the player
     def draw(self, Win):
+        #draws the player
         pygame.draw.rect(win, (150, 150, 150), (self.x,self.y,self.width,self.height))
         pygame.draw.rect(win, (255, 0, 0), (self.x+2.5,self.y-5,self.width-5,5))
         pygame.draw.rect(win, (255, 0, 0), (self.x+5,self.y-10,self.width-10,5))
@@ -30,6 +34,11 @@ class player(object):
         pygame.draw.rect(win, (0, 0, 175), (self.x-22.5,self.y+5,self.width-25,25))
         pygame.draw.rect(win, (0, 0, 175), (self.x+(self.width+12.5),self.y+5,self.width-25,25))
         
+        #creates the hitbox
+        self.hitbox = (self.x-24, self.y-18, 83, 55)
+        pygame.draw.rect(win, (255,0,0), self.hitbox,2)
+        
+#class for the enemy and player lasers        
 class laser(object):
     def __init__(self,x,y):
         self.x = x
