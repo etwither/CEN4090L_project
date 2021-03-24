@@ -6,6 +6,7 @@ winH = 800
 pygame.display.set_caption('pyGalaga')
 win = pygame.display.set_mode((winW,winH))
 
+##########################################################################################################
 #player
 class player(object):
     def __init__(self,x,y,width,height):
@@ -37,7 +38,8 @@ class player(object):
         #creates the hitbox
         self.hitbox = (self.x-24, self.y-18, 83, 55)
         pygame.draw.rect(win, (255,0,0), self.hitbox,2)
-        
+
+##########################################################################################################
 #class for the enemy and player lasers        
 class laser(object):
     def __init__(self,x,y):
@@ -51,6 +53,7 @@ class laser(object):
     def draw(self,win):
         pygame.draw.rect(win, (255, 0, 0), (self.x,self.y,self.width,self.height))
 
+##########################################################################################################
 class enemy(object):
     def __init__(self,x,y,width,height):
         self.x = x
@@ -121,7 +124,8 @@ class enemy(object):
         #hitbox
         self.hitbox = (self.x-27, self.y-17, 86, 72)
         pygame.draw.rect(win, (255,0,0), self.hitbox,2)
-        
+
+##########################################################################################################
 #start screen
 def startGame():
     playerTemp = player(250,300,35,35)
@@ -150,7 +154,8 @@ def startGame():
         playerTemp.draw(win)  
         enemyTemp.draw(win)
         pygame.display.update()
-    
+
+##########################################################################################################   
 #updates the player and the enemies        
 def redraw():
     win.fill((0,0,0))
@@ -159,25 +164,27 @@ def redraw():
     enemy1.move()
     for x in pLaser:
         x.draw(win)
+    for x in eLaser:
+        x.draw(win)
     pygame.display.update()
 
 
-
+##########################################################################################################
 run = True
 intro = True
 clock = pygame.time.Clock()
 
 #laser mechanics
 pLaser = []
+eLaser = []
 shoot = 0
+elaserCount = 0
 
 #player/enemies
 player1 = player(250,600,35,35)
 enemy1 = enemy(250,250,35,35)
 
-
-
-
+##########################################################################################################
 #main loop for game
 startGame()
 
@@ -201,6 +208,19 @@ while run:
             lazer.y -= lazer.vel
         else:
             pLaser.pop(pLaser.index(lazer))
+            
+    #move the enemy laser and if it leaves the screen delete it
+    for lazer in eLaser:
+        if lazer.y > 0 and lazer.y < winH:
+            lazer.y += lazer.vel
+        else:
+            eLaser.pop(eLaser.index(lazer))
+            
+    #enemys fire a laser every 40 loops
+    if elaserCount == 40:
+        eLaser.append(laser(enemy1.x+17.5,enemy1.y-10))
+        elaserCount = 0
+    elaserCount += 1
             
     #gets the key pressed for movment
     keys = pygame.key.get_pressed()
