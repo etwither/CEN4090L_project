@@ -72,6 +72,35 @@ class enemy(object):
         #hitbox
         self.hitbox = (self.x-27, self.y-17, 86, 72)
         pygame.draw.rect(win, (255,0,0), self.hitbox,2)
+        
+#start screen
+def startGame():
+    playerTemp = player(250,300,35,35)
+    enemyTemp = enemy(540,290,35,35)
+    start = True
+
+    while start:
+        clock.tick(27)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.display.quit()
+            
+        keys = pygame.key.get_pressed()         
+        if keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]:
+            start = False
+            
+        win.fill((0,0,0)) 
+        title = pygame.font.SysFont('Yackien', 100, True, italic=True).render('PyGalaga', 1, (255,0,0))
+        instructions1 = pygame.font.SysFont('comicsans', 60, True).render('Press the shift to start', 1, (255,255,255))
+        instructions2 = pygame.font.SysFont('comicsans', 60, True).render('Space to shoot', 1, (255,255,255))
+        instructions3 = pygame.font.SysFont('comicsans', 60, True).render('Left and right arrows to move', 1, (255,255,255))
+        win.blit(title, (250, 140))  
+        win.blit(instructions1, (180, 400))    
+        win.blit(instructions2, (240, 510))
+        win.blit(instructions3, (110, 455)) 
+        playerTemp.draw(win)  
+        enemyTemp.draw(win)
+        pygame.display.update()
     
 #updates the player and the enemies        
 def redraw():
@@ -100,6 +129,8 @@ enemy1 = enemy(250,250,35,35)
 
 
 #main loop for game
+startGame()
+
 while run:
     clock.tick(27)
 	
