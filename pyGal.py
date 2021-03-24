@@ -46,6 +46,7 @@ class laser(object):
         self.width = 5
         self.height = 10
         self.vel = 15
+        
     
     def draw(self,win):
         pygame.draw.rect(win, (255, 0, 0), (self.x,self.y,self.width,self.height))
@@ -54,9 +55,57 @@ class enemy(object):
     def __init__(self,x,y,width,height):
         self.x = x
         self.y = y
+        self.xStart = x
+        self.yStart = y
         self.width = width
         self.height = height
-        self.vel = 15
+        self.velHor = 10
+        self.velVert = 5
+        
+    def move(self):
+        #moving to the left
+        if self.velHor < 0:
+            if self.x > self.velHor + 50:
+                self.x += self.velHor
+                
+                if self.velVert < 0:
+                    if self.y > self.yStart - 50:
+                        self.y += self.velVert
+                    else:
+                        self.velVert = self.velVert * -1
+                        self.y += self.velVert
+                        
+                else:
+                    if self.y < self.yStart + 50:
+                        self.y += self.velVert
+                    else:
+                        self.velVert = self.velVert * -1
+                        self.y += self.velVert
+            else:
+                self.velHor = self.velHor * -1
+                self.x += self.velHor  
+                       
+        #moving to the right
+        else:
+            if self.x < winW - 75:
+                self.x += self.velHor
+                
+                if self.velVert < 0:
+                    if self.y > self.yStart - 50:
+                        self.y += self.velVert
+                    else:
+                        self.velVert = self.velVert * -1
+                        self.y += self.velVert
+                        
+                else:
+                    if self.y < self.yStart + 50:
+                        self.y += self.velVert
+                    else:
+                        self.velVert = self.velVert * -1
+                        self.y += self.velVert
+            else:
+                self.velHor = self.velHor * -1
+                self.x += self.velHor
         
     def draw(self,win):
         #draws out the enemy
@@ -66,7 +115,7 @@ class enemy(object):
         pygame.draw.rect(win, (150, 0, 0), (self.x-25,self.y-15,self.width-20,30))      #cannon attached to long bar
         pygame.draw.rect(win, (150, 0, 0), (self.x+45,self.y-15,self.width-20,30))      #cannon attached to long bar
         pygame.draw.rect(win, (0, 150, 0), (self.x-(self.width-22.5),self.y+(self.height-10),(self.width-15)*3,5))      #long bar in front
-        pygame.draw.rect(win, (150, 0, 0), (self.x-22.5,self.y+30,self.width-25,25))    ##cannon attached to long bar
+        pygame.draw.rect(win, (150, 0, 0), (self.x-22.5,self.y+30,self.width-25,25))    #cannon attached to long bar
         pygame.draw.rect(win, (150, 0, 0), (self.x+(self.width+12.5),self.y+30,self.width-25,25))    #cannon attached to long bar
         
         #hitbox
@@ -107,6 +156,7 @@ def redraw():
     win.fill((0,0,0))
     player1.draw(win)
     enemy1.draw(win)
+    enemy1.move()
     for x in pLaser:
         x.draw(win)
     pygame.display.update()
