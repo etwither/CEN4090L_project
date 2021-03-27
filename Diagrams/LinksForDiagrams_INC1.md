@@ -1,4 +1,4 @@
-
+The diagrams for Increment 2 are the same as in Increment 1.
 # Use Case diagram
 
 
