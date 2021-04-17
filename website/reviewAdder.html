@@ -1,0 +1,23 @@
+<html>
+	<body>
+		<form action = "{{ url_for('addr') }}" method = "POST">
+		    <h2>Write a Review</h2>
+		    
+		    Username:
+		    <input type = "text" name = "Username" placeholder = "Enter Name"/><br> 
+		    
+		    Game:
+		    <input type = "text" name = "Game" placeholder = "Ex: Galaga"/><br>    
+		    
+		    Rating:
+		    <input type = "text" name = "Rating" placeholder = "0-10"/><br> 
+		    
+		    Review:<br>
+		    <textarea name = "Review" placeholder = "Type review here"></textarea></br>    
+		    
+		    <input type = "Submit" value = "Submit" /><br>    
+		    
+		    <br><a href = "/">Back to Home</a></br>     
+		</form>
+	</body>
+</html>
