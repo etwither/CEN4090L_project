@@ -1,0 +1,26 @@
+<html>
+   <body>
+      <center><h1>Reviews for {{ game }}<h1></center>    
+   
+      <table border = 1 align = "center">
+         <thead>
+            <td>User</td>
+            <td>Review</td>
+            <td>Rating</td>                         
+            <td>Review Time</td>
+         </thead>
+         
+         {% for row in rows %}
+            <tr>
+               <td>{{row["Username"]}}</td>
+               <td>{{row["Review"]}}</td>
+               <td> {{ row["Rating"]}}</td>	      
+               <td> {{ row["ReviewTime"]}}</td>
+            </tr>
+         {% endfor %}
+      </table>
+      
+      <center><a href = "/">Back to Home</a></center>   
+      
+   </body>
+</html>
