@@ -5,7 +5,7 @@ import datetime
 from subprocess import call
 app = Flask(__name__,template_folder='./')  
 
-call(["python3", "setup.py"])
+call(["python3", "startDatabase.py"])
 
 @app.route('/')
 def home():
@@ -43,7 +43,29 @@ def addr():
         finally:
             return render_template('home.html')  
             con.close()
+
+@app.route('/reviewSearch')                                       
+def search_review():
+    return render_template('reviewSearch.html')
     
+@app.route('/reviewsFound',methods = ['GET', 'POST'])    
+def show():
+    rows = []
+    if request.method == 'POST':
+        try:
+            game = request.form['Game']        
+            query = "SELECT Username,Rating,Review,ReviewTime FROM Reviews WHERE Game = '%s'" % game  
+            with sql.connect("storeData.db") as con:
+                con.row_factory = sql.Row
+                cur = con.cursor()
+                cur.execute(query)                   
+                rows = cur.fetchall()
+        except:
+            con.rollback()
+        
+        finally:
+            return render_template("reviewsDisplay.html",rows = rows,game = game)  
+            con.close()
     
 if __name__ == '__main__':
     app.run(debug = True)
