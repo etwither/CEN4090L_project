@@ -13,7 +13,7 @@ def home():
 def games():
     return render_template('pyGames.html')
     
-@app.route('/pyGalaga')
+@app.route('/Galaga')
 def pyGalaga():
     call(["python3", "pyGal.py"])
     return render_template('pyGal.html') 
