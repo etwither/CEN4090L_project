@@ -5,7 +5,7 @@ import datetime
 from subprocess import call
 app = Flask(__name__,template_folder='./')  
 
-call(["python3", "startDatabase.py"])
+#call(["python3", "startDatabase.py"])
 
 @app.route('/')
 def home():
@@ -28,17 +28,19 @@ def new_review():
 def addr():
     if request.method == 'POST':
         try:
-            user = request.form['Username']
+            un = request.form['Username']
             game = request.form['Game']
-            rates = request.form['Rating']
-            reviews = request.form['Review']
+            rate = request.form['Rating']
+            review = request.form['Review']
             rate = float(rate)
-            with sql.connect("reviewData.db") as con:
+            with sql.connect("storeData.db") as con:
                 cur = con.cursor()
-                cur.execute("INSERT INTO Reviews (Username, Game, ReviewTime, Rating, Review) VALUES (?,?,?,?,?)", (user,game,datetime.datetime.now(),rates,reviews) )  
+                cur.execute("INSERT INTO Reviews (Username, Game, ReviewTime, Rating, Review) VALUES (?,?,?,?,?)", (un,game,datetime.datetime.now(),rate,review) )  
                 con.commit()
         except:
+            return render_template('pyGames.html')
             con.rollback()
+            
         
         finally:
             return render_template('home.html')  
