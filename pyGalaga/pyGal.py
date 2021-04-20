@@ -227,6 +227,8 @@ def redraw():
         x.draw(win)
     for x in eLaser:
         x.draw(win)
+    if player1.health < 1:
+        gameOver()
     pygame.display.update()
 
 def clean():
@@ -248,6 +250,12 @@ def drawLives():
         win.blit(ship, (winW-60, winH-30))
     if player1.health > 2:
         win.blit(ship, (winW-90, winH-30))
+        
+def gameOver():
+    gO = pygame.font.SysFont('comicsans', 100, True).render('Game Over', 1, (255,255,255))
+    tot = pygame.font.SysFont('comicsans', 100, True).render('Your Score is ' + str(score), 1, (255,255,255))
+    win.blit(gO, (200, 350))
+    win.blit(tot, (150, 420))
 ##########################################################################################################
 run = True
 intro = True
