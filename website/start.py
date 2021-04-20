@@ -15,10 +15,25 @@ def home():
 def games():
     return render_template('pyGames.html')
     
+@app.route('/EscapeArtist')
+def pyGalaga():
+    call(["python3", "eaplay.py"])
+    return render_template('escape.html')
+    
 @app.route('/Galaga')
 def pyGalaga():
     call(["python3", "pyGal.py"])
-    return render_template('pyGal.html') 
+    return render_template('pyGal.html')
+    
+@app.route('/Pacman')
+def pyGalaga():
+    call(["python3", "pacman_main.py"])
+    return render_template('pacman.html') 
+    
+@app.route('/Pokemon')
+def pyGalaga():
+    call(["python3", "main.py"])
+    return render_template('pokemon.html') 
     
 @app.route('/addReview')
 def new_review():
