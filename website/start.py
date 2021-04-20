@@ -16,7 +16,7 @@ def games():
     return render_template('pyGames.html')
     
 @app.route('/EscapeArtist')
-def pyGalaga():
+def escape():
     call(["python3", "eaplay.py"])
     return render_template('escape.html')
     
@@ -26,12 +26,12 @@ def pyGalaga():
     return render_template('pyGal.html')
     
 @app.route('/Pacman')
-def pyGalaga():
+def pacman():
     call(["python3", "pacman_main.py"])
     return render_template('pacman.html') 
     
 @app.route('/Pokemon')
-def pyGalaga():
+def pokemon():
     call(["python3", "main.py"])
     return render_template('pokemon.html') 
     
