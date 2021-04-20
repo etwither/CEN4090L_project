@@ -21,8 +21,12 @@ class player(object):
         #speed
         self.vel = 10
         
-        #hitbox
-        self.hitbox = (self.x-24, self.y-18, 83, 55)
+        #health
+        self.health = 3
+    
+    #removes health when hit
+    def hit(self):
+        self.health -= 1
         
     #creates the player
     def draw(self, Win):
@@ -56,14 +60,26 @@ class laser(object):
 ##########################################################################################################
 class enemy(object):
     def __init__(self,x,y,width,height):
+        #position
         self.x = x
         self.y = y
         self.xStart = x
         self.yStart = y
+        
+        #size
         self.width = width
         self.height = height
+        self.wStart = width
+        self.hStart = height
+        
+        #speed
         self.velHor = 10
         self.velVert = 5
+        self.vhStart = 10
+        self.vvStart = 5
+        
+        #health
+        self.health = 1
         
     def move(self):
         #moving to the left
