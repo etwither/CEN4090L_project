@@ -1,0 +1,6 @@
+Escape Artist is a simple game played to pass the time where you control your ship 
+using w, a, s, d keys and try to reach the target without getting hit by the enemy spaceships.
+After each level, the enemy spaceships speed increases making it harder to reach the target.
+The target is also placed randomly on the other side of the map so that you have to use
+different techniques to get past the enemy spaceships.The goal is to see if you can get the 
+high score. 
