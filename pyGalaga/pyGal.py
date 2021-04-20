@@ -209,6 +209,8 @@ def startGame():
 #updates the player and the enemies        
 def redraw():
     win.fill((0,0,0))
+    scores = pygame.font.SysFont('comicsans', 30, True).render('Score: ' + str(score), 1, (255,255,255))
+    win.blit(scores, (winW-440, winH-775))
     player1.draw(win)
     enemy1.draw(win)
     enemy1.move()
@@ -218,7 +220,11 @@ def redraw():
         x.draw(win)
     pygame.display.update()
 
-
+def clean():
+    if player1.health < 1:
+        player1.clear()
+    if enemy1.health < 1:
+        enemy1.clear()
 ##########################################################################################################
 run = True
 intro = True
@@ -233,6 +239,9 @@ elaserCount = 0
 #player/enemies
 player1 = player(250,600,35,35)
 enemy1 = enemy(250,250,35,35)
+
+#score
+score = 0
 
 ##########################################################################################################
 #main loop for game
@@ -285,6 +294,7 @@ while run:
         if lazer.y < enemy1.hitbox[1] + enemy1.hitbox[3] and lazer.y > enemy1.hitbox[1]:
             if lazer.x < enemy1.hitbox[0] + enemy1.hitbox[2] and lazer.x > enemy1.hitbox[0]:
                 enemy1.hit()
+                score = score + 10
                 pLaser.pop(pLaser.index(lazer))
             
     #gets the key pressed for movment
@@ -327,8 +337,7 @@ while run:
         shoot = 1
         
     #removes the enemy or player if their health reaches 0
-    if player1.health < 1:
-        player1.clear()
+    clean()
     
     redraw()
     
