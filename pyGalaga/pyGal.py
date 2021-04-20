@@ -74,7 +74,7 @@ class laser(object):
 
 ##########################################################################################################
 class enemy(object):
-    def __init__(self,x,y,width,height):
+    def __init__(self,x,y,width,height,vel):
         #position
         self.x = x
         self.y = y
@@ -88,7 +88,7 @@ class enemy(object):
         self.hStart = height
         
         #speed
-        self.velHor = 10
+        self.velHor = vel
         self.velVert = 5
         self.vhStart = 10
         self.vvStart = 5
@@ -173,13 +173,13 @@ class enemy(object):
         
             #hitbox
             self.hitbox = (self.x-27, self.y-17, 86, 72)
-            pygame.draw.rect(win, (255,0,0), self.hitbox,2)
+            #pygame.draw.rect(win, (255,0,0), self.hitbox,2)
 
 ##########################################################################################################
 #start screen
 def startGame():
     playerTemp = player(250,300,35,35)
-    enemyTemp = enemy(540,290,35,35)
+    enemyTemp = enemy(540,290,35,35,10)
     start = True
 
     while start:
@@ -217,6 +217,12 @@ def redraw():
     player1.draw(win)
     enemy1.draw(win)
     enemy1.move()
+    enemy2.draw(win)
+    enemy2.move()
+    enemy3.draw(win)
+    enemy3.move()
+    enemy4.draw(win)
+    enemy4.move()
     for x in pLaser:
         x.draw(win)
     for x in eLaser:
@@ -228,6 +234,12 @@ def clean():
         player1.clear()
     if enemy1.health < 1:
         enemy1.clear()
+    if enemy2.health < 1:
+        enemy2.clear()
+    if enemy3.health < 1:
+        enemy3.clear()
+    if enemy4.health < 1:
+        enemy4.clear()
         
 def drawLives():
     if player1.health > 0:
@@ -249,16 +261,16 @@ elaserCount = 0
 
 #player/enemies
 player1 = player(250,600,35,35)
-enemy1 = enemy(250,250,35,35)
+enemy1 = enemy(250,250,35,35,15)
+enemy2 = enemy(250,150,35,35,-5)
+enemy3 = enemy(250,50,35,35,10)
+enemy4 = enemy(250,350,35,35,-10)
 
 #score
 score = 0
 
 #player lives
 ship = pygame.image.load('ship.PNG')
-life1 = win.blit(ship, (winW-30, winH-30))
-life2 = win.blit(ship, (winW-60, winH-30))
-life3 = win.blit(ship, (winW-90, winH-30))
 
 ##########################################################################################################
 #main loop for game
@@ -296,6 +308,12 @@ while run:
     if elaserCount == 40:
         if enemy1.health == 1:
             eLaser.append(laser(enemy1.x+17.5,enemy1.y-10))
+        if enemy2.health == 1:
+            eLaser.append(laser(enemy2.x+17.5,enemy2.y-10))
+        if enemy3.health == 1:
+            eLaser.append(laser(enemy3.x+17.5,enemy3.y-10))
+        if enemy4.health == 1:
+            eLaser.append(laser(enemy4.x+17.5,enemy4.y-10))
         elaserCount = 0
     elaserCount += 1
     
@@ -311,6 +329,21 @@ while run:
         if lazer.y < enemy1.hitbox[1] + enemy1.hitbox[3] and lazer.y > enemy1.hitbox[1]:
             if lazer.x < enemy1.hitbox[0] + enemy1.hitbox[2] and lazer.x > enemy1.hitbox[0]:
                 enemy1.hit()
+                score = score + 10
+                pLaser.pop(pLaser.index(lazer))
+        if lazer.y < enemy2.hitbox[1] + enemy2.hitbox[3] and lazer.y > enemy2.hitbox[1]:
+            if lazer.x < enemy2.hitbox[0] + enemy2.hitbox[2] and lazer.x > enemy2.hitbox[0]:
+                enemy2.hit()
+                score = score + 10
+                pLaser.pop(pLaser.index(lazer))
+        if lazer.y < enemy3.hitbox[1] + enemy3.hitbox[3] and lazer.y > enemy3.hitbox[1]:
+            if lazer.x < enemy3.hitbox[0] + enemy3.hitbox[2] and lazer.x > enemy3.hitbox[0]:
+                enemy3.hit()
+                score = score + 10
+                pLaser.pop(pLaser.index(lazer))
+        if lazer.y < enemy4.hitbox[1] + enemy4.hitbox[3] and lazer.y > enemy4.hitbox[1]:
+            if lazer.x < enemy4.hitbox[0] + enemy4.hitbox[2] and lazer.x > enemy4.hitbox[0]:
+                enemy4.hit()
                 score = score + 10
                 pLaser.pop(pLaser.index(lazer))
             
