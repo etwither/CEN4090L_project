@@ -311,6 +311,8 @@ ship = pygame.image.load('ship.PNG')
 
 ##########################################################################################################
 #main loop for game
+pygame.mixer.music.load('space.mp3')
+pygame.mixer.music.play(-1)
 startGame()
 
 while run:
