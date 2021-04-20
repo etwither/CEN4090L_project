@@ -56,7 +56,7 @@ class player(object):
         
             #creates the hitbox
             self.hitbox = (self.x-24, self.y-18, 83, 55)
-            pygame.draw.rect(win, (255,0,0), self.hitbox,2)
+            #pygame.draw.rect(win, (255,0,0), self.hitbox,2)
 
 ##########################################################################################################
 #class for the enemy and player lasers        
@@ -211,6 +211,9 @@ def redraw():
     win.fill((0,0,0))
     scores = pygame.font.SysFont('comicsans', 30, True).render('Score: ' + str(score), 1, (255,255,255))
     win.blit(scores, (winW-440, winH-775))
+    lives = pygame.font.SysFont('comicsans', 30, True).render('Lives:', 1, (255,255,255))
+    win.blit(lives, (winW-90, winH-60))
+    drawLives()
     player1.draw(win)
     enemy1.draw(win)
     enemy1.move()
@@ -225,6 +228,14 @@ def clean():
         player1.clear()
     if enemy1.health < 1:
         enemy1.clear()
+        
+def drawLives():
+    if player1.health > 0:
+        win.blit(ship, (winW-30, winH-30))
+    if player1.health > 1:
+        win.blit(ship, (winW-60, winH-30))
+    if player1.health > 2:
+        win.blit(ship, (winW-90, winH-30))
 ##########################################################################################################
 run = True
 intro = True
@@ -242,6 +253,12 @@ enemy1 = enemy(250,250,35,35)
 
 #score
 score = 0
+
+#player lives
+ship = pygame.image.load('ship.PNG')
+life1 = win.blit(ship, (winW-30, winH-30))
+life2 = win.blit(ship, (winW-60, winH-30))
+life3 = win.blit(ship, (winW-90, winH-30))
 
 ##########################################################################################################
 #main loop for game
