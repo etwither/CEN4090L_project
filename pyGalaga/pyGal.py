@@ -89,9 +89,9 @@ class enemy(object):
         
         #speed
         self.velHor = vel
-        self.velVert = 5
-        self.vhStart = 10
-        self.vvStart = 5
+        self.velVert = 3
+        self.vhStart = vel
+        self.vvStart = 3
         
         #hitbox
         self.hitbox = (self.x-27, self.y-17, 86, 72)
@@ -158,6 +158,28 @@ class enemy(object):
         self.velVert = 0
         self.hitbox = (self.x, self.y, 0, 0)
         self.health = 0
+        
+    #reset for when all enemies are eliminated  
+    def reset(self):
+        #position
+        self.x = self.xStart
+        self.y = self.yStart
+        
+        #size
+        self.width = self.wStart
+        self.height = self.hStart
+        
+        #speed
+        self.velHor = self.vhStart + 1
+        self.velVert = self.vvStart + 1
+        self.vhStart = self.velHor
+        self.vvStart = self.velVert
+        
+        #hitbox
+        self.hitbox = (self.x-27, self.y-17, 86, 72)
+        
+        #health
+        self.health = 1
         
     def draw(self,win):
         #draws out the enemy
@@ -250,6 +272,13 @@ def drawLives():
         win.blit(ship, (winW-60, winH-30))
     if player1.health > 2:
         win.blit(ship, (winW-90, winH-30))
+        
+def enemyReset():
+    if enemy1.health < 1 and enemy2.health < 1 and enemy3.health < 1 and enemy4.health < 1:
+        enemy1.reset()
+        enemy2.reset()
+        enemy3.reset()
+        enemy4.reset()
         
 def gameOver():
     gO = pygame.font.SysFont('comicsans', 100, True).render('Game Over', 1, (255,255,255))
@@ -393,6 +422,8 @@ while run:
         if len(pLaser) < 2:
             pLaser.append(laser(player1.x+17.5,player1.y-10)) 
         shoot = 1
+        
+    enemyReset()
         
     #removes the enemy or player if their health reaches 0
     clean()
