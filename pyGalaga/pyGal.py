@@ -143,21 +143,37 @@ class enemy(object):
             else:
                 self.velHor = self.velHor * -1
                 self.x += self.velHor
+                
+    #removes health when hit
+    def hit(self):
+        self.health -= 1
+        
+    #removes the player when health is 0       
+    def clear(self):
+        self.x = 0
+        self.y = 0
+        self.width = 0
+        self.height = 0
+        self.velHor = 0
+        self.velVert = 0
+        self.hitbox = (self.x, self.y, 0, 0)
+        self.health = 0
         
     def draw(self,win):
         #draws out the enemy
-        pygame.draw.rect(win, (0, 255, 0), (self.x,self.y,self.width,self.height))      #main body
-        pygame.draw.rect(win, (0, 255, 0), (self.x+5,self.y-10,self.width-10,5))        #short bar above long bar
-        pygame.draw.rect(win, (150, 0, 0), (self.x-25,self.y-5,self.width+50,5))        #long bar above body
-        pygame.draw.rect(win, (150, 0, 0), (self.x-25,self.y-15,self.width-20,30))      #cannon attached to long bar
-        pygame.draw.rect(win, (150, 0, 0), (self.x+45,self.y-15,self.width-20,30))      #cannon attached to long bar
-        pygame.draw.rect(win, (0, 150, 0), (self.x-(self.width-22.5),self.y+(self.height-10),(self.width-15)*3,5))      #long bar in front
-        pygame.draw.rect(win, (150, 0, 0), (self.x-22.5,self.y+30,self.width-25,25))    #cannon attached to long bar
-        pygame.draw.rect(win, (150, 0, 0), (self.x+(self.width+12.5),self.y+30,self.width-25,25))    #cannon attached to long bar
+        if self.health > 0:
+            pygame.draw.rect(win, (0, 255, 0), (self.x,self.y,self.width,self.height))      #main body
+            pygame.draw.rect(win, (0, 255, 0), (self.x+5,self.y-10,self.width-10,5))        #short bar above long bar
+            pygame.draw.rect(win, (150, 0, 0), (self.x-25,self.y-5,self.width+50,5))        #long bar above body
+            pygame.draw.rect(win, (150, 0, 0), (self.x-25,self.y-15,self.width-20,30))      #cannon attached to long bar
+            pygame.draw.rect(win, (150, 0, 0), (self.x+45,self.y-15,self.width-20,30))      #cannon attached to long bar
+            pygame.draw.rect(win, (0, 150, 0), (self.x-(self.width-22.5),self.y+(self.height-10),(self.width-15)*3,5))      #long bar in front
+            pygame.draw.rect(win, (150, 0, 0), (self.x-22.5,self.y+30,self.width-25,25))    #cannon attached to long bar
+            pygame.draw.rect(win, (150, 0, 0), (self.x+(self.width+12.5),self.y+30,self.width-25,25))    #cannon attached to long bar
         
-        #hitbox
-        self.hitbox = (self.x-27, self.y-17, 86, 72)
-        pygame.draw.rect(win, (255,0,0), self.hitbox,2)
+            #hitbox
+            self.hitbox = (self.x-27, self.y-17, 86, 72)
+            pygame.draw.rect(win, (255,0,0), self.hitbox,2)
 
 ##########################################################################################################
 #start screen
@@ -252,16 +268,24 @@ while run:
             
     #enemys fire a laser every 40 loops
     if elaserCount == 40:
-        eLaser.append(laser(enemy1.x+17.5,enemy1.y-10))
+        if enemy1.health == 1:
+            eLaser.append(laser(enemy1.x+17.5,enemy1.y-10))
         elaserCount = 0
     elaserCount += 1
     
-    #checks to see if the enemy laser hit the player and remove health if it did
+    #enemy laser hit the player
     for lazer in eLaser:
         if lazer.y + lazer.height > player1.hitbox[1] and lazer.y + lazer.height < player1.hitbox[1] + player1.hitbox[3]:
             if lazer.x < player1.hitbox[0] + player1.hitbox[2] and lazer.x > player1.hitbox[0]:
                 player1.hit()
                 eLaser.pop(eLaser.index(lazer))
+    
+    #player laser hit an enemy        
+    for lazer in pLaser:
+        if lazer.y < enemy1.hitbox[1] + enemy1.hitbox[3] and lazer.y > enemy1.hitbox[1]:
+            if lazer.x < enemy1.hitbox[0] + enemy1.hitbox[2] and lazer.x > enemy1.hitbox[0]:
+                enemy1.hit()
+                pLaser.pop(pLaser.index(lazer))
             
     #gets the key pressed for movment
     keys = pygame.key.get_pressed()
