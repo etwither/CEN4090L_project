@@ -1,4 +1,4 @@
 MacPan is a recreation of the classic game 'Pacman'! Maneuver your MacPan character using
 Up, Down, Left, and Right arrow keys through 3 unique maps, eating all the pellets
-and most importantly, escape the ghosts that are looking for revenge! The game features, 3 levels,
+and most importantly, escape the ghosts that are looking for revenge! The game features: 3 levels,
 4 ghosts and an ingame hiscore tracker!
