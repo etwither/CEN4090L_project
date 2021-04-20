@@ -21,6 +21,9 @@ class player(object):
         #speed
         self.vel = 10
         
+        #hitbox
+        self.hitbox = (self.x-24, self.y-18, 83, 55)
+        
         #health
         self.health = 3
     
@@ -28,20 +31,32 @@ class player(object):
     def hit(self):
         self.health -= 1
         
+        
+    #removes the player when health is 0
+    def clear(self):
+        self.x = 0
+        self.y = 0
+        self.width = 0
+        self.height = 0
+        self.vel = 0
+        self.hitbox = (self.x, self.y, 0, 0)
+        self.health = 0
+        
     #creates the player
     def draw(self, Win):
         #draws the player
-        pygame.draw.rect(win, (150, 150, 150), (self.x,self.y,self.width,self.height))
-        pygame.draw.rect(win, (255, 0, 0), (self.x+2.5,self.y-5,self.width-5,5))
-        pygame.draw.rect(win, (255, 0, 0), (self.x+5,self.y-10,self.width-10,5))
-        pygame.draw.rect(win, (255, 0, 0), (self.x+7.5,self.y-15,self.width-15,5))
-        pygame.draw.rect(win, (0, 0, 175), (self.x-(self.width-22.5),self.y+(self.height-20),(self.width-15)*3,5))
-        pygame.draw.rect(win, (0, 0, 175), (self.x-22.5,self.y+5,self.width-25,25))
-        pygame.draw.rect(win, (0, 0, 175), (self.x+(self.width+12.5),self.y+5,self.width-25,25))
+        if self.health > 0:
+            pygame.draw.rect(win, (150, 150, 150), (self.x,self.y,self.width,self.height))
+            pygame.draw.rect(win, (255, 0, 0), (self.x+2.5,self.y-5,self.width-5,5))
+            pygame.draw.rect(win, (255, 0, 0), (self.x+5,self.y-10,self.width-10,5))
+            pygame.draw.rect(win, (255, 0, 0), (self.x+7.5,self.y-15,self.width-15,5))
+            pygame.draw.rect(win, (0, 0, 175), (self.x-(self.width-22.5),self.y+(self.height-20),(self.width-15)*3,5))
+            pygame.draw.rect(win, (0, 0, 175), (self.x-22.5,self.y+5,self.width-25,25))
+            pygame.draw.rect(win, (0, 0, 175), (self.x+(self.width+12.5),self.y+5,self.width-25,25))
         
-        #creates the hitbox
-        self.hitbox = (self.x-24, self.y-18, 83, 55)
-        pygame.draw.rect(win, (255,0,0), self.hitbox,2)
+            #creates the hitbox
+            self.hitbox = (self.x-24, self.y-18, 83, 55)
+            pygame.draw.rect(win, (255,0,0), self.hitbox,2)
 
 ##########################################################################################################
 #class for the enemy and player lasers        
@@ -77,6 +92,9 @@ class enemy(object):
         self.velVert = 5
         self.vhStart = 10
         self.vvStart = 5
+        
+        #hitbox
+        self.hitbox = (self.x-27, self.y-17, 86, 72)
         
         #health
         self.health = 1
@@ -237,6 +255,13 @@ while run:
         eLaser.append(laser(enemy1.x+17.5,enemy1.y-10))
         elaserCount = 0
     elaserCount += 1
+    
+    #checks to see if the enemy laser hit the player and remove health if it did
+    for lazer in eLaser:
+        if lazer.y + lazer.height > player1.hitbox[1] and lazer.y + lazer.height < player1.hitbox[1] + player1.hitbox[3]:
+            if lazer.x < player1.hitbox[0] + player1.hitbox[2] and lazer.x > player1.hitbox[0]:
+                player1.hit()
+                eLaser.pop(eLaser.index(lazer))
             
     #gets the key pressed for movment
     keys = pygame.key.get_pressed()
@@ -276,6 +301,10 @@ while run:
         if len(pLaser) < 2:
             pLaser.append(laser(player1.x+17.5,player1.y-10)) 
         shoot = 1
+        
+    #removes the enemy or player if their health reaches 0
+    if player1.health < 1:
+        player1.clear()
     
     redraw()
     
