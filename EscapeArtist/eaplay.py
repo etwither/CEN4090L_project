@@ -14,13 +14,13 @@ V_VEL = 3
 VEL = 5
 
 
-SPACE = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'land.jpg')), (WIDTH, HEIGHT))
+SPACE = pygame.transform.scale(pygame.image.load(os.path.join('eaAssets', 'land.jpg')), (WIDTH, HEIGHT))
 
 
 INDIANA_WIDTH, INDIANA_HEIGHT = 55, 40
-INDIANA_IMAGE = pygame.image.load(os.path.join('Assets', 'lego.jpeg'))
+INDIANA_IMAGE = pygame.image.load(os.path.join('eaAssets', 'lego.jpeg'))
 INDIANA = pygame.transform.rotate(pygame.transform.scale(INDIANA_IMAGE, (50,40)), 360)
-VILLAIN_IMAGE = pygame.image.load(os.path.join('Assets', 'trooper.jpg'))
+VILLAIN_IMAGE = pygame.image.load(os.path.join('eaAssets', 'trooper.jpg'))
 VILLAIN1 = pygame.transform.rotate(pygame.transform.scale(VILLAIN_IMAGE, (50, 40)), 360)
 VILLAIN2 = pygame.transform.rotate(pygame.transform.scale(VILLAIN_IMAGE, (50, 40)), 360)
 VILLAIN3 = pygame.transform.rotate(pygame.transform.scale(VILLAIN_IMAGE, (50, 40)), 360)
