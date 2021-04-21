@@ -7,3 +7,5 @@
     - To remove reviews:
       - Username: admin
       - Password: 12345
+- References
+  - Some of the code was developed by referencing projects from previous classes
