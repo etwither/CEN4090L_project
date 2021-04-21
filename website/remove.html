@@ -1,0 +1,17 @@
+<html>
+	<body>
+		<form action = "{{ url_for('remove') }}" method = "POST">
+		    <h2>Enter the Username and game of the review you want to remove</h2>
+		    
+		    Username:
+		    <input type = "text" name = "Username" placeholder = "Enter username"/><br> 
+		    
+		    Game:
+		    <input type = "text" name = "Game" placeholder = "enter game"/><br>   
+		    
+		    <input type = "Submit" value = "Submit" /><br>    
+		    
+		    <br><a href = "/">Back to Home</a></br>     
+		</form>
+	</body>
+</html>
