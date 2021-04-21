@@ -53,7 +53,6 @@ def addr():
                 cur.execute("INSERT INTO Reviews (Username, Game, ReviewTime, Rating, Review) VALUES (?,?,?,?,?)", (un,game,datetime.datetime.now(),rate,review) )  
                 con.commit()
         except:
-            return render_template('pyGames.html')
             con.rollback()
             
         
@@ -82,6 +81,58 @@ def show():
         
         finally:
             return render_template("reviewsDisplay.html",rows = rows,game = game)  
+            con.close()
+            
+@app.route('/Login')
+def login():
+    return render_template('login.html')
+
+@app.route('/removeReviews',methods = ['GET', 'POST'])
+def log():
+    if request.method == 'POST':
+        try:
+            un = request.form['Username']
+            passw = request.form['Password']
+            
+            
+        except:
+            return render_template('error.html')
+            
+        
+        finally:
+            if un == 'admin':
+                if passw == '12345':
+                    return render_template('remove2.html')  
+                else:
+                    return render_template('error.html')
+            else:
+                return render_template('error.html')
+                
+@app.route('/remove')
+def rm():
+    return render_template('remove.html')
+                
+@app.route('/remove2',methods = ['GET', 'POST'])
+def remove():
+    if request.method == 'POST':
+        try:
+            un = request.form['Username']
+            game = request.form['Game']
+            q1 = "DELETE FROM Reviews WHERE (Username = '%s'" % un
+            q2 = " AND Game = '%s')" % game
+            query = q1 + q2
+            print(query)
+            with sql.connect("storeData.db") as con:
+                con.row_factory = sql.Row
+                cur = con.cursor()
+                cur.execute(query)                   
+                rows = cur.fetchall()
+        except:
+            con.rollback()
+            
+        
+        finally:
+            return render_template('remove.html')  
             con.close()
     
 if __name__ == '__main__':
