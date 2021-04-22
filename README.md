@@ -1,7 +1,7 @@
 # CEN4090L_project
 
 - How to run:
-  1.) make sure the following files and folders are in the same directory:
+  - make sure the following files and folders are in the same directory:
     - all .html files
     - start.py
     - startDatabase.py
@@ -35,9 +35,9 @@
     - red_ghost.png
     - temp.txt
     - yellow_ghost.png
-  2.) Run startDatabase.py (this creates the database for the reviews)
-  3.) Run start.py (starts the website)
-  4.) Open http://localhost:5000 in a web browser
+  - Run startDatabase.py (this creates the database for the reviews)
+  - Run start.py (starts the website)
+  - Open http://localhost:5000 in a web browser
     - To remove reviews:
       - Username: admin
       - Password: 12345
