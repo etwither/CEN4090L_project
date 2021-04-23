@@ -22,9 +22,6 @@
     - ex_maze3.png
     - Game.py
     - green_ghost.png
-    - output.dat
-    - output_calls.txt
-    - output_time.txt
     - pacman.png
     - pacman.py
     - pacman_32x32.png
@@ -33,7 +30,6 @@
     - pacman_main.py
     - pacman_U.png
     - red_ghost.png
-    - temp.txt
     - yellow_ghost.png
   - Run startDatabase.py (this creates the database for the reviews)
   - Run start.py (starts the website)
