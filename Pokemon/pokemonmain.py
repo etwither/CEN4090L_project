@@ -12,7 +12,7 @@ CHARH = 64
 # walkLeft = [pygame.image.load(os.path.join('Assets','trdown1.png')), pygame.image.load(os.path.join('Assets', 'trdown2.png')), pygame.image.load(os.path.join('Assets', 'trdown3.png')), pygame.image.load(os.path.join('Assets', 'trdown4.png'))]
 # walkCount = 0
 
-class Pokemon:
+class Pokemon: #class to hold information about individual pokemon
     def __init__(self, name, type, moves, attack, defense, health, img, chp = 100):
         self.name = name
         self.type = type
@@ -24,7 +24,7 @@ class Pokemon:
         self.currenthp = chp
         # self.direction = 3
 
-class Player:
+class Player: #class to hold information about player and movement on screen
     def __init__(self, xpos, ypos):
         self.pos = [xpos, ypos]
         self.x = xpos
@@ -37,7 +37,7 @@ class Player:
     def renderer(self, screen):
         pygame.draw.rect(screen, 0, (self.pos[0]*CHARW, self.pos[1]*CHARH, CHARW, CHARH), CHARW)
 
-class Move:
+class Move: #class to hold information about individual moves
     def __init__(self, name, power, img, ac = 1.0):
         self.name = name
         self.power = power
@@ -50,7 +50,7 @@ moveList = [Move('Fire Blast', 1, "fireblast.png"), Move('Volcano', 2, "volcano.
             Move('Steel Strike', 1, "steelstrike.png"), Move('Steel Wing', 2, "steelwing.png", 0.7), Move('Spikes', 1.5, "spikes.png", 0.85),
             Move('Rough Tough', 1, "roughtough.png"), Move('Smash Castle', 2, "smashcastle.png", 0.7), Move('Blast', 1.5, "blast.png", 0.85),
             Move('Spook', 1, "spook.png"), Move('Calamity', 2, "calamity.png", 0.7), Move('Shadow Force', 1.5, "shadowforce.png", 0.85),
-            Move('Spark', 1, ""), Move('Electric Fury', 2, "", 0.6), Move('Boom Blast', 1.5, "", 0.8)]
+            Move('Spark', 1, ""), Move('Electric Fury', 2, "", 0.6), Move('Boom Blast', 1.5, "", 0.8)] #list that holds all the moves
 
 pokemonlist = [Pokemon('Copper', 'Fire', [moveList[0], moveList[1], moveList[2]], 5, 5, 100, "copper.png"),
                 Pokemon('Serpentino', 'Grass', [moveList[3], moveList[4], moveList[5]], 5, 5, 100, "diddydoo.png"),
@@ -58,11 +58,11 @@ pokemonlist = [Pokemon('Copper', 'Fire', [moveList[0], moveList[1], moveList[2]]
                 Pokemon('Plat5000', 'Steel', [moveList[9], moveList[10], moveList[11]], 5, 5, 100, "plat5000.png"),
                 Pokemon('Rockie', 'Rock', [moveList[12], moveList[13], moveList[14]], 5, 5, 100, "rockie.png"),
                 Pokemon('Tsoh G.', 'Ghost', [moveList[15], moveList[16], moveList[17]], 5, 5, 100, "tsohg.png"),
-               Pokemon('Gigabirdie', 'Electric', [moveList[18], moveList[19], moveList[20]], 10, 5, 200, "gigabirdie.png", 200)]
+               Pokemon('Gigabirdie', 'Electric', [moveList[18], moveList[19], moveList[20]], 10, 5, 200, "gigabirdie.png", 200)] #list that holds all the Pokemon
 
 class PokemonGame:
 
-    def __init__(self):
+    def __init__(self): #defines attribute related to the game itself-
         pygame.init()
         # self.colors = {"Screen", (90, 180, 255)}
         self.clock = pygame.time.Clock()
@@ -75,9 +75,9 @@ class PokemonGame:
         self.pokemoncurrent = []
         self.battledpokemon = []
         self.potioncount = 5
-        pygame.display.set_caption("Pokemon Test")
+        pygame.display.set_caption("Pokemon")
 
-    def click(self, x, y, w, h):
+    def click(self, x, y, w, h): #defines what happens when you click somewhere/button control
         mousePos = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
         if x + w > mousePos[0] > x and y + h > mousePos[1] > y:
@@ -85,7 +85,7 @@ class PokemonGame:
                 return True
         return False
 
-    def movement(self, keypress, player, character):
+    def movement(self, keypress, player, character): #how player can move based on keys pressed and how graphic changes
         if keypress[pygame.K_a] and player.x - VEL > 0:
             player.x -= VEL
             self.img = "trainerleft.png"
@@ -103,7 +103,7 @@ class PokemonGame:
             self.img = "trainerfront.png"
             pygame.display.update()
 
-    def maploader(self, file):
+    def maploader(self, file): #loads map from text file. map can be fully and easily customizable
         with open(file) as mapf:
             for l in mapf:
                 tiles = []
@@ -111,7 +111,7 @@ class PokemonGame:
                     tiles.append(l[i])
                 self.map.append(tiles)
 
-    def renderer(self):
+    def renderer(self): #renders the map on screen
         ypos = 0
         for line in self.map:
             xpos = 0
@@ -122,31 +122,24 @@ class PokemonGame:
                 xpos = xpos + 1
             ypos = ypos + 1
 
-    def iseffective(self, player, cpu): #ADD NEW TYPES
+    def iseffective(self, player, cpu): #checks to see if player is super effective on cpu
         if player.type == 'Fire' and (cpu.type == 'Grass' or cpu.type == 'Steel'):
-            print("0")
             return True
         if player.type == 'Grass' and (cpu.type == 'Water' or cpu.type == 'Rock'):
-            print("1")
             return True
         if player.type == 'Water' and (cpu.type == 'Fire' or cpu.type == 'Rock'):
-            print("2")
             return True
         if player.type == 'Steel' and (cpu.type == 'Grass' or cpu.type == 'Rock'):
-            print("3")
             return True
         if player.type == 'Rock' and cpu.type == 'Fire':
-            print("4")
             return True
         if player.type == 'Ghost' and cpu.type == 'Ghost':
-            print("5")
             return True
         if player.type == 'Electric' and cpu.type == 'Water':
-            print("6")
             return True
         return False
 
-    def isweak(self, player, cpu): #ADD NEW TYPES
+    def isweak(self, player, cpu): #checks to see if player is not effective on cpu
         if player.type == 'Grass' and (cpu.type == 'Fire' or cpu.type == 'Grass' or cpu.type == 'Steel'):
             return True
         if player.type == 'Water' and (cpu.type == 'Grass' or cpu.type == 'Water'):
@@ -163,23 +156,23 @@ class PokemonGame:
             return True
         return False
 
-    def fainted(self, pokemon):
+    def fainted(self, pokemon): #if pokemon fainted check
         if (pokemon.currenthp <= 0):
             return True
         else:
             return False
 
-    def textrender(self, result, font, x = 600, y = 400):
+    def textrender(self, result, font, x = 600, y = 400): #renders text on screen
         result = font.render(result, True, (255, 255, 255))
         self.screen.blit(result, (x, y))
         pygame.display.update()
 
-    def battlebackground(self):
+    def battlebackground(self): #renders battle background on screen
         self.screen.fill(0)
         title = pygame.image.load(os.path.join('Assets', 'battletest1.png'))
         self.screen.blit(title, (0, 0))
 
-    def chances(self, cpu):
+    def chances(self, cpu): #returns chance of catching based on cpu health
         if cpu.currenthp == 100:
             return 0
         elif cpu.currenthp >= 75:
@@ -191,7 +184,7 @@ class PokemonGame:
         else:
             return 0.9
 
-    def cputurn(self, playerp, cpup, font, cpumult):
+    def cputurn(self, playerp, cpup, font, cpumult): #controls what happens during cpu turn in battle
         cmove = cpup.moves[random.randint(0, 2)]
         self.battlebackground()
         result = cpup.name + ' used ' + cmove.name + ' on ' + playerp.name + '!'
@@ -204,6 +197,16 @@ class PokemonGame:
                 cmove.power * cpup.attack * cpumult) + ' damage on ' + playerp.name + '!'
             self.textrender(result, font)
             time.sleep(1)
+            if self.iseffective(cpup, playerp):
+                self.battlebackground()
+                result = 'The attack was Super Effective!'
+                self.textrender(result, font)
+                time.sleep(1)
+            elif self.isweak(cpup, playerp):
+                self.battlebackground()
+                result = 'The attack was Not Very Effective!'
+                self.textrender(result, font)
+                time.sleep(1)
             playerp.currenthp -= (cmove.power * cpup.attack * cpumult)
         else:
             self.battlebackground()
@@ -211,14 +214,26 @@ class PokemonGame:
             self.textrender(result, font)
             time.sleep(1)
 
-    def cpufaint(self, cpup, font, ecsound):
+    def cpufaint(self, cpup, font, ecsound): #controls what happpens when cpu faints, whether normal or final boss
         self.battlebackground()
         result = cpup.name + ' has fainted!'
         self.textrender(result, font)
         time.sleep(3)
+        if cpup.name == 'Gigabirdie':
+            self.clock.tick(FPS)
+            self.screen.fill(0)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    quit()
+            font = pygame.font.Font(None, 75)
+            result = "You beat the game! Congratulations!"
+            self.textrender(result, font, 200, 300)
+            ecsound.stop()
+            pygame.time.delay(3000)
+            quit()
         ecsound.stop()
 
-    def playerfaint(self, playerp, font, ecsound):
+    def playerfaint(self, playerp, font, ecsound): #controls what happens if player faints and does or doesnt have more pokemon
         self.battlebackground()
         result = playerp.name + ' has fainted!'
         self.textrender(result, font)
@@ -232,24 +247,24 @@ class PokemonGame:
                     quit()
             font = pygame.font.Font(None, 75)
             result = "GAME OVER!"
-            self.textrender(result, font)
+            self.textrender(result, font, 500, 300)
             ecsound.stop()
             pygame.time.delay(3000)
             quit()
 
-    def accuracycheck(self, move):
+    def accuracycheck(self, move): #checks if move will hit or not
         if random.random() < move.ac:
             return True
         else:
             return False
 
 
-    def battlegenerator(self, player):
-        if self.map[math.floor(player.y / 64)][math.floor(player.x / 64)] == "G":
-            if pygame.KEYDOWN and random.random() <= 0.005 or len(self.pokemoncurrent) >= 6:
+    def battlegenerator(self, player, run1, run): #generates the entire battle sequence
+        if self.map[math.floor(player.y / 64)][math.floor(player.x / 64)] == "G" or self.map[math.floor(player.y / 64)][math.floor(player.x / 64)] == "D" or self.map[math.floor(player.y / 64)][math.floor(player.x / 64)] == "W":
+            final = False
+            if pygame.KEYDOWN and random.random() <= 0.005 or len(self.pokemoncurrent) >= 6 or final == True:
                 run2 = True
-                final = False
-                if len(self.pokemoncurrent) >= 6:
+                if len(self.pokemoncurrent) >= 6: #final boss check
                     final = True
                     self.screen.fill(0)
                     font = pygame.font.Font(None, 50)
@@ -265,14 +280,17 @@ class PokemonGame:
                 ecsound.play()
                 fade = pygame.Surface((self.height, self.width))
                 fade.fill((0,0,0))
-                playerp = self.pokemoncurrent[0]
-                playerp.currenthp = 2 #TESTING PURPOSES
-                # self.pokemoncurrent.insert(1, copy.deepcopy(pokemonlist[random.randint(0, 2)])) #TESTING ONLY
-                if final != True:
-                    cpup = copy.deepcopy(pokemonlist[random.randint(0, 5)])
+                playerp = self.pokemoncurrent[0] #first pokemon in slot will be used
+                if final != True: #checks to see what tile player is on to encounter what pokemon
+                    if self.map[math.floor(player.y / 64)][math.floor(player.x / 64)] == "G":
+                        cpup = copy.deepcopy(pokemonlist[random.randint(0, 1)])
+                    elif self.map[math.floor(player.y / 64)][math.floor(player.x / 64)] == "W":
+                        cpup = copy.deepcopy(pokemonlist[2])
+                    else:
+                        cpup = copy.deepcopy(pokemonlist[random.randint(3, 5)])
                 else:
-                    cpup = pokemonlist[6]
-                for a in range(0, 300):
+                    cpup = pokemonlist[6] #final boss
+                for a in range(0, 300): #fade from move screen to battle sequence
                     fade.set_alpha(a)
                     self.screen.blit(fade,(0, 0))
                     pygame.display.update()
@@ -281,7 +299,7 @@ class PokemonGame:
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                             ecsound.stop()
-                            run2 = False
+                            quit()
                     self.screen.fill(0)
                     title = pygame.image.load(os.path.join('Assets', 'battletest1.png'))
                     self.screen.blit(title, (0, 0))
@@ -293,14 +311,18 @@ class PokemonGame:
                     self.screen.blit(str1, (50, 300))
                     self.screen.blit(str2, (1150, 50))
 
+                    #move, catch, potion, and run button rendering
                     move1 = pygame.image.load(os.path.join('Assets', playerp.moves[0].img))
                     self.screen.blit(move1, (1100, 400))
                     move2 = pygame.image.load(os.path.join('Assets', playerp.moves[1].img))
                     self.screen.blit(move2, (1100, 460))
                     move3 = pygame.image.load(os.path.join('Assets', playerp.moves[2].img))
                     self.screen.blit(move3, (1100, 520))
-                    catch = pygame.image.load(os.path.join('Assets', "catch.png"))
-                    self.screen.blit(catch, (1100, 580))
+                    if cpup.name != 'Gigabirdie':
+                        catch = pygame.image.load(os.path.join('Assets', "catch.png"))
+                        self.screen.blit(catch, (1100, 580))
+                        run = pygame.image.load(os.path.join('Assets', "run.png"))
+                        self.screen.blit(run, (950, 640))
                     potion = pygame.image.load(os.path.join('Assets', "potions.png"))
                     if self.potioncount > 0:
                         self.screen.blit(potion, (1100, 640))
@@ -312,24 +334,23 @@ class PokemonGame:
                     cpuHP = font.render(chp, True, (0, 0, 0))
                     self.screen.blit(playerHP, (50, 330))
                     self.screen.blit(cpuHP, (1150, 80))
+                    str3 = font.render(('Type: ' + playerp.type), True, (0, 0, 0))
+                    str4 = font.render(('Type: ' + cpup.type), True, (0, 0, 0))
+                    self.screen.blit(str3, (50, 360))
+                    self.screen.blit(str4, (1150, 110))
 
+
+                    #pokemon rendering
                     pokemonplayerimg = pygame.image.load(os.path.join('Assets', playerp.img))
                     pokemoncpuimg = pygame.image.load(os.path.join('Assets', cpup.img))
                     pokemonplayerimg = pygame.transform.scale(pokemonplayerimg, (250, 250))
                     pokemoncpuimg = pygame.transform.scale(pokemoncpuimg, (250, 250))
                     self.screen.blit(pokemonplayerimg, (200, 400))
                     self.screen.blit(pokemoncpuimg, (900, 70))
-                    print(cpup.currenthp)
 
-                    if self.iseffective(playerp, cpup):
-                        # print("\nplayer super effective")
-                        # print(playerp.type)
-                        # print(cpup.type)
+                    if self.iseffective(playerp, cpup): #checks for effectiveness for power modifications
                         multiplier = 2.0
                     elif self.isweak(playerp, cpup):
-                        # print("\nplayer weak effective")
-                        # print(playerp.type)
-                        # print(cpup.type)
                         multiplier = 0.5
                     else:
                         multiplier = 1.0
@@ -341,7 +362,7 @@ class PokemonGame:
                     else:
                         cpumult = 1.0
 
-                    if self.click(1100, 400, 100, 50): #attack 1
+                    if self.click(1100, 400, 100, 50): #attack 1 controls
                         self.battlebackground()
                         font = pygame.font.Font(None, 24)
                         result = playerp.name + ' used ' + playerp.moves[0].name + ' on ' + cpup.name + '!'
@@ -352,6 +373,16 @@ class PokemonGame:
                             result = playerp.name + ' did ' + str(playerp.moves[0].power * playerp.attack * multiplier) + ' damage on ' + cpup.name + '!'
                             self.textrender(result, font)
                             time.sleep(1)
+                            if self.iseffective(playerp, cpup):
+                                self.battlebackground()
+                                result = 'The attack was Super Effective!'
+                                self.textrender(result, font)
+                                time.sleep(1)
+                            elif self.isweak(playerp, cpup):
+                                self.battlebackground()
+                                result = 'The attack was Not Very Effective!'
+                                self.textrender(result, font)
+                                time.sleep(1)
                             cpup.currenthp -= (playerp.moves[0].power * playerp.attack * multiplier)
                         else:
                             self.battlebackground()
@@ -364,11 +395,10 @@ class PokemonGame:
                         else:
                             self.cputurn(playerp, cpup, font, cpumult)
                         if self.fainted(playerp):
-                            run3, run2, run1 = False, False, False
                             self.playerfaint(playerp, font, ecsound)
                             playerp = self.pokemoncurrent[0]
 
-                    if self.click(1100, 460, 100, 50): #attack 2
+                    if self.click(1100, 460, 100, 50): #attack 2 controls
                         self.battlebackground()
                         font = pygame.font.Font(None, 24)
                         result = playerp.name + ' used ' + playerp.moves[1].name + ' on ' + cpup.name + '!'
@@ -380,6 +410,16 @@ class PokemonGame:
                                 playerp.moves[1].power * playerp.attack * multiplier) + ' damage on ' + cpup.name + '!'
                             self.textrender(result, font)
                             time.sleep(1)
+                            if self.iseffective(playerp, cpup):
+                                self.battlebackground()
+                                result = 'The attack was Super Effective!'
+                                self.textrender(result, font)
+                                time.sleep(1)
+                            elif self.isweak(playerp, cpup):
+                                self.battlebackground()
+                                result = 'The attack was Not Very Effective!'
+                                self.textrender(result, font)
+                                time.sleep(1)
                             cpup.currenthp -= (playerp.moves[1].power * playerp.attack * multiplier)
                         else:
                             self.battlebackground()
@@ -392,11 +432,10 @@ class PokemonGame:
                         else:
                             self.cputurn(playerp, cpup, font, cpumult)
                         if self.fainted(playerp):
-                            run3, run2, run1 = False, False, False
                             self.playerfaint(playerp, font, ecsound)
                             playerp = self.pokemoncurrent[0]
 
-                    if self.click(1100, 520, 100, 50): #attack 3
+                    if self.click(1100, 520, 100, 50): #attack 3 controls
                         self.battlebackground()
                         font = pygame.font.Font(None, 24)
                         result = playerp.name + ' used ' + playerp.moves[2].name + ' on ' + cpup.name + '!'
@@ -408,6 +447,16 @@ class PokemonGame:
                                 playerp.moves[2].power * playerp.attack * multiplier) + ' damage on ' + cpup.name + '!'
                             self.textrender(result, font)
                             time.sleep(1)
+                            if self.iseffective(playerp, cpup):
+                                self.battlebackground()
+                                result = 'The attack was Super Effective!'
+                                self.textrender(result, font)
+                                time.sleep(1)
+                            elif self.isweak(playerp, cpup):
+                                self.battlebackground()
+                                result = 'The attack was Not Very Effective!'
+                                self.textrender(result, font)
+                                time.sleep(1)
                             cpup.currenthp -= (playerp.moves[2].power * playerp.attack * multiplier)
                         else:
                             self.battlebackground()
@@ -420,11 +469,10 @@ class PokemonGame:
                         else:
                             self.cputurn(playerp, cpup, font, cpumult)
                         if self.fainted(playerp):
-                            run3, run2, run1 = False, False, False
                             self.playerfaint(playerp, font, ecsound)
                             playerp = self.pokemoncurrent[0]
 
-                    if self.click(1100, 580, 100, 50): #Catching
+                    if self.click(1100, 580, 100, 50) and cpup.name != 'Gigabirdie': #Catching controls
                         self.battlebackground()
                         font = pygame.font.Font(None, 24)
                         result = 'You threw a pokeball!'
@@ -446,11 +494,10 @@ class PokemonGame:
                             time.sleep(1)
                             self.cputurn(playerp, cpup, font, cpumult)
                         if self.fainted(playerp):
-                            run3, run2, run1 = False, False, False
                             self.playerfaint(playerp, font, ecsound)
                             playerp = self.pokemoncurrent[0]
 
-                    if self.potioncount > 0: #Healing
+                    if self.potioncount > 0: #Healing controls
                         if self.click(1100, 640, 100, 50):
                             self.battlebackground()
                             font = pygame.font.Font(None, 24)
@@ -461,9 +508,27 @@ class PokemonGame:
                             time.sleep(1)
                             self.cputurn(playerp, cpup, font, cpumult)
                         if self.fainted(playerp):
-                            run3, run2, run1 = False, False, False
                             self.playerfaint(playerp, font, ecsound)
                             playerp = self.pokemoncurrent[0]
+
+                    if self.click(950, 640, 100, 50) and cpup.name != 'Gigabirdie': #Run controls
+                        self.battlebackground()
+                        if random.random() <= .35:
+                            font = pygame.font.Font(None, 24)
+                            result = 'You ran away!'
+                            self.textrender(result, font)
+                            time.sleep(1)
+                            run2 = False
+                            ecsound.stop()
+                        else:
+                            font = pygame.font.Font(None, 24)
+                            result = 'You couldn\'t run away!'
+                            self.textrender(result, font)
+                            time.sleep(1)
+                            self.cputurn(playerp, cpup, font, cpumult)
+                            if self.fainted(playerp):
+                                self.playerfaint(playerp, font, ecsound)
+                                playerp = self.pokemoncurrent[0]
 
                     pygame.display.update()
 
@@ -473,7 +538,7 @@ class PokemonGame:
     def main(self):
         random.seed(time.time())
         run = True
-        while run:
+        while run: #title screen rendering
             self.clock.tick(FPS)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -482,11 +547,11 @@ class PokemonGame:
             title = pygame.image.load(os.path.join('Assets', 'title.png'))
             self.screen.blit(title, (0, 0))
             playButton = pygame.image.load(os.path.join('Assets',"playButton.png"))
-            quitButton = pygame.image.load(os.path.join('Assets',"quitButton.png"))
+            controls = pygame.image.load(os.path.join('Assets',"controls.png"))
             self.screen.blit(playButton, (300, 250))
-            self.screen.blit(quitButton, (700, 250))
+            self.screen.blit(controls, (700, 250))
             pygame.display.update()
-            if self.click(300, 250, 200, 80):
+            if self.click(300, 250, 200, 80): #click button to go to character select screen
                 run3 = True
                 run1 = True
                 while run3:
@@ -513,10 +578,9 @@ class PokemonGame:
                     self.screen.blit(p3, (850, 390))
                     font1 = pygame.font.Font(None, 75)
                     self.textrender('Choose your starter Pokemon!', font1, 250, 200)
-                    if self.click(200, 400, 250, 250):
+                    if self.click(200, 400, 250, 250): #adds certain pokemon if clicked
                         self.pokemoncurrent.insert(0, copy.deepcopy(pokemonlist[0]))
                         run3 = False
-                        print("ADDED")
                     if self.click(500, 400, 250, 250):
                         self.pokemoncurrent.insert(0, copy.deepcopy(pokemonlist[2]))
                         run3 = False
@@ -526,10 +590,7 @@ class PokemonGame:
 
                 player = Player(50, 50)
                 self.maploader("map1.txt")
-                print("Passed MAP")
                 while run1:
-                # print("x: ", player.x, " y: ", player.y, "\n")
-                # print("xpos: ", player.pos[0], " ypos: ", player.pos[1], "\n")
                     self.renderer()
                     self.clock.tick(FPS)
                     for event in pygame.event.get():
@@ -539,11 +600,41 @@ class PokemonGame:
                     self.screen.blit(character, (player.x, player.y))
                     keypress = pygame.key.get_pressed()
                     self.movement(keypress, player, character)
-                    self.battlegenerator(player)
+                    self.battlegenerator(player, run1, run)
                     pygame.display.update()
 
-            if self.click(700, 250, 200, 80):
-                run = False
+            if self.click(700, 250, 200, 80): #controls screen
+                run10 = True
+                while run10:
+                    self.clock.tick(FPS)
+                    self.screen.fill(0)
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            run1, run, run10 = False, False, False
+                    font = pygame.font.Font(None, 25)
+                    str1 = font.render('Controls:', True, (255, 255, 255))
+                    str2 = font.render('Use the WASD keys to move up, left, down, and right respectively.', True, (255, 255, 255))
+                    str3 = font.render('Move player into grass, water, or rock tiles to encounter Pokemon.', True, (255, 255, 255))
+                    str4 = font.render('Battle pokemon with three different moves with different accuracy and power.', True,
+                                       (255, 255, 255))
+                    str5 = font.render('Heal Pokemon with potions or catch other Pokemon with Pokeballs.', True,
+                                       (255, 255, 255))
+                    str6 = font.render('Catch six Pokemon to face the final boss!', True,
+                                       (255, 255, 255))
+                    self.screen.blit(str1, (10, 10))
+                    self.screen.blit(str2, (10, 45))
+                    self.screen.blit(str3, (10, 75))
+                    self.screen.blit(str4, (10, 105))
+                    self.screen.blit(str5, (10, 135))
+                    self.screen.blit(str6, (10, 165))
+                    backButton = pygame.image.load(os.path.join('Assets', "back.png"))
+                    self.screen.blit(backButton, (10, 200))
+                    pygame.display.update()
+
+                    if self.click(10, 200, 200, 80):
+                        run10 = False
+
+
 
         pygame.quit()
         exit(0)
@@ -552,7 +643,9 @@ class PokemonGame:
 map_tile_image = {
     "G": pygame.transform.scale(pygame.image.load("Assets/grass.png"), (CHARW, CHARH)),
     "L": pygame.transform.scale(pygame.image.load("Assets/land.png"), (CHARW, CHARH)),
-    "W": pygame.transform.scale(pygame.image.load("Assets/water.png"), (CHARW, CHARH))
+    "W": pygame.transform.scale(pygame.image.load("Assets/water.png"), (CHARW, CHARH)),
+    "P": pygame.transform.scale(pygame.image.load("Assets/dirt.png"), (CHARW, CHARH)),
+    "D": pygame.transform.scale(pygame.image.load("Assets/dirt2.png"), (CHARW, CHARH))
 }
 
 if __name__ == '__main__':
