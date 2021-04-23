@@ -14,12 +14,12 @@
     - space.mp3
     - blue_ghost.png
     - constants.py
-    - ex_maze1.png
-    - ex_maze2.png
-    - ex_maze2.txt
-    - ex_maze2_1.png
-    - ex_maze2_2.png
-    - ex_maze3.png
+    - maze1.png
+    - maze1.txt
+    - maze2.png
+    - maze2.txt
+    - maze3.png
+    - maze3.txt
     - Game.py
     - green_ghost.png
     - pacman.png
