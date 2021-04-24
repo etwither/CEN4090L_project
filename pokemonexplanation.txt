@@ -1,3 +1,3 @@
-Pokemon is a simple game based off the regular Pokemon series. Using the w, a, s, d keys, you can move a player around an environment with grass and water and encounter Pokemon.
-You can catch these Pokemon with Pokemon balls and heal your Pokemon with pre-given items.
-After collecting a certain amount of Pokemon, you will face a final boss. Beating this final boss will accomplish the final goal of the game.
+Pokemon is a simple game based off the regular Pokemon series. Using the w, a, s, d keys, you can move a player around an environment with grass, water, and stone and encounter Pokemon.
+You can catch these Pokemon with Pokemon balls and heal your Pokemon with pre-given potions.
+After collecting six Pokemon, you will face a final boss. Beating this final boss will accomplish the final goal of the game.
